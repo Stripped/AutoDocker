@@ -5,6 +5,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+#analyze Dockerfiles
+sources_dockerfiles
+
+
+
+
+
+
 # C extensions
 *.so
 
