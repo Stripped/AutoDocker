@@ -8,6 +8,10 @@ __pycache__/
 # C extensions
 *.so
 
+#ML
+datasets
+sources_dockerfiles
+
 # Distribution / packaging
 .Python
 env/
