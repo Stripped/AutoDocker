@@ -5,6 +5,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+
+#ML
+datasets
+sources_dockerfiles
+
+
+
 # C extensions
 *.so
 
