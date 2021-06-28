@@ -1,6 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
+from pprint import pprint
 
 
 def test_visualize():
@@ -44,3 +45,5 @@ def create_base_image_table(list_base_image):
     x, y = create_data_lists(list_base_image)
     table = pd.DataFrame({'Dockerimage': x, 'Count': y})
     table.to_csv('base_images.csv', index=False)
+    data = pd.read_csv("base_images.csv")
+    pprint(data)
