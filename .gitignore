@@ -12,6 +12,12 @@ datasets
 sources_dockerfiles
 
 
+#LOGS
+*.log
+
+#CSV
+*.csv
+*.csv*
 
 # C extensions
 *.so

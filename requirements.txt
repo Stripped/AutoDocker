@@ -1,0 +1,6 @@
+seaborn
+notebook
+dockerfile-parse
+matplotlib
+numpy
+pandas
