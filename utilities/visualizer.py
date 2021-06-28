@@ -2,6 +2,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 from pprint import pprint
+import logging
+
+logger = logging.getLogger("main.utilities.visualizer")
 
 
 def test_visualize():
@@ -14,24 +17,29 @@ def test_visualize():
 
 def analyze_data(list_base_image):
     dict_base = {}
-    for base_image in list_base_image:
-        dict_base[base_image] = 0
-        for base_image_checker in list_base_image:
-            if base_image == base_image_checker:
-                dict_base[base_image] += 1
+    try:
+        for base_image in list_base_image:
+            dict_base[base_image] = 0
+            for base_image_checker in list_base_image:
+                if base_image == base_image_checker:
+                    dict_base[base_image] += 1
+    except RuntimeError as r_e:
+        logger.exception("Received error:", r_e.data)
     return dict_base
 
 
 def create_data_lists(list_base_image):
-    dict_base = analyze_data(list_base_image)
-    x = []
-    y = []
-    for key, value in dict_base.items():
-        print(key)
-        print(value)
-        x.append(key)
-        y.append(value)
-
+    try:
+        dict_base = analyze_data(list_base_image)
+        dict_base_sorted_list = sorted(dict_base.items(), key=lambda elem: elem[1], reverse=True)
+        dict_base_sorted = {k: v for k, v in dict_base_sorted_list}
+        x = []
+        y = []
+        for key, value in dict_base_sorted.items():
+            x.append(key)
+            y.append(value)
+    except RuntimeError as r_e:
+        logger.exception("Received error:", r_e.data)
     return x, y
 
 
@@ -46,4 +54,5 @@ def create_base_image_table(list_base_image):
     table = pd.DataFrame({'Dockerimage': x, 'Count': y})
     table.to_csv('base_images.csv', index=False)
     data = pd.read_csv("base_images.csv")
-    pprint(data)
+    # pprint(data)
+    return data
